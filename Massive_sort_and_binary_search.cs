@@ -11,49 +11,41 @@ namespace Massive_sort_and_binary_search
 {
     class Program
     {
-        static void Main(string[] args)
+        static int validate()
         {
-            int s, high = 10, low = 0;
-            string input;
-
-
-            //Регулировка массива:
-            Console.WriteLine("Введите количество ячеек массива:");
-            Console.Write("_");
-            input = Console.ReadLine();
-            while (!Int32.TryParse(input, out high))
+            int k;
+            string input = Console.ReadLine();
+            while (!Int32.TryParse(input, out k))
             {
                 Console.WriteLine("Пожалуйста, введите значение в числовом формате.");
                 Console.Write("_");
                 input = Console.ReadLine();
             }
+            return k;
+        }
+        static void Main(string[] args)
+        {
+            int s, high = 10, low = 0;
+
+
+            //Регулировка массива:
+            Console.WriteLine("Введите количество ячеек массива:");
+            Console.Write("_");
+            high = validate();
             int[] a = new int[high];
             
             
             //Bвод искомого:
             Console.WriteLine("Введите искомое число:");
             Console.Write("_");
-            input = Console.ReadLine();
-            while (!Int32.TryParse(input,out s))
-            {
-                Console.WriteLine("Пожалуйста, введите значение в числовом формате.");
-                Console.Write("_");
-                input = Console.ReadLine();
-            }
+            s = validate();
 
 
             //Заполнение массива:
             Console.WriteLine("Заполните массив:");               
             for (int i = 0; i < high; i++)
             {
-                Console.Write("_");
-                input = Console.ReadLine();
-                while (!Int32.TryParse(input, out a[i]))
-                {
-                    Console.WriteLine("Пожалуйста, введите значение в числовом формате.");
-                    Console.Write("_");
-                    input = Console.ReadLine();
-                }
+                a[i] = validate();
                 
             }
             
