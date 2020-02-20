@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,49 +25,51 @@ namespace Massive_sort_and_binary_search
         }
         static void Main(string[] args)
         {
-            int s, high = 10, low = 0;
-
-
+            int value, arrScale;
             //Регулировка массива:
             Console.WriteLine("Введите количество ячеек массива:");
             Console.Write("_");
-            high = validate();
-            int[] a = new int[high];
+            arrScale = validate();
+            int[] arr = new int[arrScale];
             
             
             //Bвод искомого:
             Console.WriteLine("Введите искомое число:");
             Console.Write("_");
-            s = validate();
+            value = validate();
 
 
             //Заполнение массива:
             Console.WriteLine("Заполните массив:");               
-            for (int i = 0; i < high; i++)
+            for (int i = 0; i < arrScale; i++)
             {
-                a[i] = validate();
+                arr[i] = validate();
                 
             }
-            
+
 
             //Сортировка массива и его вывод:
-            Array.Sort(a);
+            Array.Sort(arr);
             Console.WriteLine("Отсортированный:");
-            for (int i = 0; i < high; i++)
+            for (int i = 0; i < arrScale; i++)
             {
-                Console.WriteLine("[{0}] = {1}", i, a[i]);
+                Console.WriteLine("[{0}] = {1}", i, arr[i]);
                 Thread.Sleep(100);
             }
 
-
-            // Сам поиск:
-            while (a[(high-low)/2]!=s)
+            Console.WriteLine(BinarySearch(arr,value) + "- индекс искомого");
+            Console.ReadKey();
+        }
+        static int BinarySearch(int[] arr, int value)
+        {
+            int high = arr.Length, low = 0;
+            while (arr[(high - low) / 2] != value)
             {
-                if (a[(high - low) / 2] > s)
+                if (arr[(high - low) / 2] > value)
                 {
                     high = (high - low) / 2;
                 }
-                else if (a[(high - low) / 2] < s)
+                else if (arr[(high - low) / 2] < value)
                 {
                     low = (high - low) / 2;
                 }
@@ -76,11 +78,7 @@ namespace Massive_sort_and_binary_search
                     break;
                 }
             }
-            high = (high - low) / 2;
-            Console.WriteLine("Индекс искомого = "+high);
-
-            Thread.Sleep(100);
-            Console.ReadKey();
+            return (high - low) / 2;
         }
     }
 }
